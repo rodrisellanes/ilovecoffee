@@ -15,13 +15,12 @@ export class CoffeesController {
 
   @Get(':id')
   findOne(@Param() params) {
-    return this.coffeeService.findOne(Number(params.id));
+    return this.coffeeService.findOne(params.id);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   createCoffee(@Body() createCoffeeDto: CreateCoffeeDto) {
-    console.log(createCoffeeDto instanceof CreateCoffeeDto);
     return this.coffeeService.create(createCoffeeDto);
   }
 
@@ -30,12 +29,12 @@ export class CoffeesController {
     @Param('id') id: string,
     @Body() updateCoffeeDto: UpdateCoffeeDto,
   ) {
-    return `Coffee #${id} has been modified with body: ${updateCoffeeDto}`;
+    return this.coffeeService.update(id, updateCoffeeDto);
   }
 
   @Delete(':id')
   removeCoffee(@Param('id') id: string) {
-    this.coffeeService.remove(Number(id));
+    this.coffeeService.remove(id);
     return `Coffee ID #${id} has been removed`;
   }
 }
