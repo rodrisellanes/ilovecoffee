@@ -1,7 +1,5 @@
 import { DataSource } from "typeorm";
-import { Coffee } from "./src/coffees/entities/coffee.entity";
-import { Flavour } from "./src/coffees/entities/flavour.entity";
-import { schema1679843276651 } from "./src/migration/schema1679843276651";
+import { schemabase1680442572254 } from "./src/migrations/schemabase1680442572254";
 
 
 export default new DataSource({
@@ -11,6 +9,6 @@ export default new DataSource({
   username: 'postgres',
   password: 'pass123',
   database: 'postgres',
-  entities: [Coffee, Flavour],
-  migrations: [schema1679843276651],
+  entities: [],
+  migrations: [schemabase1680442572254],
 });
