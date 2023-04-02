@@ -7,6 +7,8 @@ import { Flavour } from "./entities/flavour.entity";
 import { Event } from "../events/entities/event.entity";
 import { PaginationQueryDto } from "../common/dto/pagination-query.dto";
 import { COFFEE_BRANDS } from "./coffees.constants";
+import { ConfigModule } from "@nestjs/config";
+import coffeesConfig from "./config/coffees.config";
 
 class MockCoffeesService {
   public findAll(paginationQuery: PaginationQueryDto) {
@@ -26,7 +28,10 @@ class ProductionConfigService {
 }
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Coffee, Flavour, Event])],
+  imports: [
+    TypeOrmModule.forFeature([Coffee, Flavour, Event]), ConfigModule,
+    ConfigModule.forFeature(coffeesConfig),
+  ],
   controllers: [CoffeesController],
   // providers: [{ provide: CoffeesService, useClass: MockCoffeesService }],
   providers: [
